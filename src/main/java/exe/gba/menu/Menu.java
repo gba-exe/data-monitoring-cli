@@ -14,6 +14,7 @@ public class Menu {
 
 
         while (true){
+            Display.clearConsole();
 
             Display.displayMainMenu();
             option = Input.readInt();
@@ -28,12 +29,19 @@ public class Menu {
 
             if (isValid == false){
                 Display.wrongOption();
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
         }
 
     }
 
     public static void setEnvironment(){
+        Display.clearConsole();
 
         while (true){
 
@@ -47,14 +55,15 @@ public class Menu {
             } else if (option == 2){
                 Environment.setDatabase(new MySQL());
                 return;
+            } else {
+                Display.clearConsole();
+                Display.wrongOption();
             }
-
-            Display.wrongOption();
         }
     }
 
     private static void showData(Integer id){
-
+        Display.clearConsole();
         Display.showData(id);
     }
 }

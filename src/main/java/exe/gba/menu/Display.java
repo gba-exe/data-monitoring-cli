@@ -35,6 +35,7 @@ public class Display {
         }
 
         for (int i = 0; i < 10; i++) {
+            clearConsole();
 
             System.out.println("+---------------------------------+");
             System.out.println("| %s: ".formatted(currentCategory.getName()) + currentCategory.getValue() + currentCategory.getDataUnit());
@@ -56,5 +57,9 @@ public class Display {
 
     public static void wrongOption(){
         System.out.println("Wrong option! ");
+    }
+
+    public final static void clearConsole(){
+        System.out.print("\033[H\033[2J");
     }
 }

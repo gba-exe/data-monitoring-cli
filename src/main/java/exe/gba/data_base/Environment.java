@@ -16,7 +16,6 @@ public class Environment {
     private static Database database = null;
 
     public static void configureEnvironment(){
-        Menu.setEnvironment();
 
         if (database instanceof H2){
             JdbcTemplate con = database.getConnection();

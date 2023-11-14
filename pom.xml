@@ -5,8 +5,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>exe.gba</groupId>
-    <artifactId>CLI-Java</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>Data-Monitoring-CLI</artifactId>
+    <version>1.0.0-alpha</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>exe.gba.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
