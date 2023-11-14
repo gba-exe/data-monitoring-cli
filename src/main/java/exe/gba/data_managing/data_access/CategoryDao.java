@@ -10,6 +10,9 @@ public class CategoryDao {
 
     private static JdbcTemplate con;
 
+    public CategoryDao() {
+    }
+
     public CategoryDao(JdbcTemplate con) {
         this.con = con;
     }
@@ -41,5 +44,13 @@ public class CategoryDao {
         }
 
         return null;
+    }
+
+    public static JdbcTemplate getCon() {
+        return con;
+    }
+
+    public static void setCon(JdbcTemplate con) {
+        CategoryDao.con = con;
     }
 }

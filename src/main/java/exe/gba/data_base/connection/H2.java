@@ -7,7 +7,7 @@ public class H2 extends Database {
 
     public H2() {
             BasicDataSource dataSource = new BasicDataSource();
-            dataSource.setUrl("jdbc:h2:file:./stockSafe");
+            dataSource.setUrl("jdbc:h2:file:./dmcli");
             dataSource.setDriverClassName("org.h2.Driver");
             dataSource.setUsername("sa");
             dataSource.setPassword("");

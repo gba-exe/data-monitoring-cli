@@ -46,7 +46,7 @@ public class Menu {
         while (true){
 
             System.out.println("Choose environment: ");
-            System.out.println("(1: Development / 2: Production) ");
+            System.out.println("(1: Local / 2: Remote Database) ");
             int option = Input.readInt();
 
             if (option == 1){

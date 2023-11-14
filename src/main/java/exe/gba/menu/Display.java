@@ -1,6 +1,7 @@
 package exe.gba.menu;
 
 import exe.gba.data_base.Environment;
+import exe.gba.data_base.connection.H2;
 import exe.gba.data_managing.categories.Category;
 import exe.gba.data_managing.categories.Unknown;
 import exe.gba.data_managing.data_access.CategoryDao;
@@ -8,10 +9,13 @@ import exe.gba.data_managing.data_access.CategoryDao;
 import java.util.List;
 
 public class Display {
-    private static final CategoryDao categoryDao = new CategoryDao(Environment.getDatabase().getConnection());
-    private static final List<Category> categories = categoryDao.listCategories();
+    private static final CategoryDao categoryDao = new CategoryDao(new H2().getConnection());
+    private static List<Category> categories;
 
     public static void displayMainMenu(){
+        categoryDao.setCon(Environment.getDatabase().getConnection());
+        categories = categoryDao.listCategories();
+
         System.out.println("+---------------------------------+");
         for (Category currentCategory:
              categories) {
@@ -37,9 +41,9 @@ public class Display {
         for (int i = 0; i < 10; i++) {
             clearConsole();
 
-            System.out.println("+---------------------------------+");
+            System.out.println("+------------------------------------------------------------------------+");
             System.out.println("| %s: ".formatted(currentCategory.getName()) + currentCategory.getValue() + currentCategory.getDataUnit());
-            System.out.println("+---------------------------------+");
+            System.out.println("+------------------------------------------------------------------------+");
 
             try {
                 Thread.sleep(1000);

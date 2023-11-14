@@ -20,10 +20,7 @@ public class Test {
         CategoryDao categoryDao = new CategoryDao(con);
         RegisterDao registerDao = new RegisterDao(con);
 
-        categoryDao.insertCategory(new AvailableStorage(null, "Available Storage","Available Storage of all volumes", "GB"));
-        categoryDao.insertCategory(new TotalStorage(null, "Total Storage","Sumo of Storage of all volumes","GB"));
-        categoryDao.insertCategory(new CpuUsage(null, "CPU Usage","Usage of processor resources","%"));
-        categoryDao.insertCategory(new RamUsage(null, "RAM Usage","Usage of RAM resources","%"));
+
 
         List<Category> categories = categoryDao.listCategories();
 
