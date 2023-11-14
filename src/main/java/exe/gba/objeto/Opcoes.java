@@ -9,23 +9,19 @@ public class Opcoes {
     private String mostrarTaxaTransferencia;
     private String mostrarArmazenamentoTotal;
     private String mostrarArmazenamentoUsado;
-    private String usuario;
-    private String senha;
-    private Boolean isLogado;
+    private String codigo;
 
     public Opcoes() {}
 
     public Opcoes(String mostrarUsoCpu, String mostrarUsoRam, String mostrarPacotesEnviados, String mostrarTaxaTransferencia,
-                  String mostrarArmazenamentoTotal, String mostrarArmazenamentoUsado, String usuario, String senha) {
+                  String mostrarArmazenamentoTotal, String mostrarArmazenamentoUsado, String codigo) {
         this.mostrarUsoCpu = mostrarUsoCpu;
         this.mostrarUsoRam = mostrarUsoRam;
         this.mostrarPacotesEnviados = mostrarPacotesEnviados;
         this.mostrarTaxaTransferencia = mostrarTaxaTransferencia;
         this.mostrarArmazenamentoTotal = mostrarArmazenamentoTotal;
         this.mostrarArmazenamentoUsado = mostrarArmazenamentoUsado;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.isLogado = false;
+        this.codigo = codigo;
     }
 
     public void setOpcoes(Scanner leitorString) {
@@ -90,32 +86,23 @@ public class Opcoes {
         return mostrarArmazenamentoUsado;
     }
 
-    public void setMostrarArmazenamentoUsado(String mostrarArmazenamentoUsado) {
+    public void setmostrarArmazenamentoUsado(String mostrarArmazenamentoUsado) {
         this.mostrarArmazenamentoUsado = mostrarArmazenamentoUsado;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+    public void setCodigo(Scanner leitorString) {
+        System.out.println("Máquina não autenticada!");
 
-    public String getSenha() {
-        return senha;
-    }
+        System.out.print("Insira o código alfanumérico: ");
+        String codigo = leitorString.nextLine();
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Boolean getLogado() {
-        return isLogado;
-    }
-
-    public void setLogado(Boolean logado) {
-        isLogado = logado;
+        if (codigo.length() == 6) {
+            this.codigo = codigo;
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package exe.gba.objeto;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
@@ -19,8 +20,8 @@ public class Maquina {
     private List<RedeInterface> interfaces;
     private List<Processo> processos;
 
-    public Maquina() {
-        this.looca = new Looca();
+    public Maquina(Looca looca) {
+        this.looca = looca;
         this.cpu = looca.getProcessador();
         this.ram = looca.getMemoria();
         this.interfaces = looca.getRede().getGrupoDeInterfaces().getInterfaces();
