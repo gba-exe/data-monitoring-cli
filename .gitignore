@@ -41,4 +41,4 @@ build/
 
 dependency-reduced-pom.xml
 *.db
-Test.java
+/src/main/java/exe/gba/Test.java
