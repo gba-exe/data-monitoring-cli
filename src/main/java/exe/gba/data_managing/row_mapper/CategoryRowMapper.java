@@ -1,6 +1,7 @@
 package exe.gba.data_managing.row_mapper;
 
 import exe.gba.data_managing.categories.Category;
+import exe.gba.data_managing.enums.CategoryEnum;
 import exe.gba.data_managing.factories.*;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -15,13 +16,14 @@ public class CategoryRowMapper implements RowMapper<Category> {
         String name = resultSet.getString("name");
         CategoryFactory categoryFactory = null;
 
-        if (name.equalsIgnoreCase("CPU Usage")){
+
+        if (name.equalsIgnoreCase(CategoryEnum.CPU_USAGE.getName())){
             categoryFactory = new CpuUsageFactory();
-        } else if (name.equalsIgnoreCase("RAM Usage")){
+        } else if (name.equalsIgnoreCase(CategoryEnum.RAM_USAGE.getName())){
             categoryFactory = new RamUsageFactory();
-        } else if (name.equalsIgnoreCase("Total Storage")){
+        } else if (name.equalsIgnoreCase(CategoryEnum.TOTAL_STORAGE.getName())){
             categoryFactory = new TotalStorageFactory();
-        } else if (name.equalsIgnoreCase("Available Storage")){
+        } else if (name.equalsIgnoreCase(CategoryEnum.AVAILABLE_STORAGE.getName())){
             categoryFactory = new AvailableStorageFactory();
         } else {
             categoryFactory = new UnknownFactory();
