@@ -20,7 +20,10 @@ public class Menu {
             Display.mainMenu();
             option = Input.readInt();
 
-            Display.showData(option);
+            if (option != 0){
+
+                Display.showData(option);
+            }
         } while (option != 0);
 
         Display.exit();
