@@ -41,3 +41,4 @@ build/
 
 dependency-reduced-pom.xml
 *.db
+Test
