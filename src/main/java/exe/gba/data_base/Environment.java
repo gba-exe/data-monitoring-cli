@@ -7,6 +7,7 @@ import exe.gba.data_managing.categories.CpuUsage;
 import exe.gba.data_managing.categories.RamUsage;
 import exe.gba.data_managing.categories.TotalStorage;
 import exe.gba.data_managing.data_access.CategoryDao;
+import exe.gba.data_managing.data_access.RegisterDao;
 import exe.gba.menu.Menu;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -25,9 +26,24 @@ public class Environment {
 
         Menu.setEnvironment();
 
+        JdbcTemplate con = database.getConnection();
+        CategoryDao.setCon(con);
+        RegisterDao.setCon(con);
+        createH2Database(con);
+    }
+
+    public static Database getDatabase() {
+        configureEnvironment();
+
+        return database;
+    }
+
+    public static void setDatabase(Database database) {
+        Environment.database = database;
+    }
+
+    public static void createH2Database(JdbcTemplate con){
         if (database instanceof H2){
-            JdbcTemplate con = database.getConnection();
-            CategoryDao categoryDao = new CategoryDao(con);
 
             con.execute("drop table if exists tb_register");
             con.execute("drop table if exists tb_category");
@@ -51,21 +67,10 @@ public class Environment {
                    );
                     """);
 
-            categoryDao.insertCategory(new AvailableStorage(null, "Available Storage","Available Storage of all volumes", "GB"));
-            categoryDao.insertCategory(new TotalStorage(null, "Total Storage","Sumo of Storage of all volumes","GB"));
-            categoryDao.insertCategory(new CpuUsage(null, "CPU Usage","Usage of processor resources","%"));
-            categoryDao.insertCategory(new RamUsage(null, "RAM Usage","Usage of RAM resources","%"));
+            CategoryDao.insertCategory(new AvailableStorage(null, "Available Storage","Available Storage of all volumes", "GB"));
+            CategoryDao.insertCategory(new TotalStorage(null, "Total Storage","Sumo of Storage of all volumes","GB"));
+            CategoryDao.insertCategory(new CpuUsage(null, "CPU Usage","Usage of processor resources","%"));
+            CategoryDao.insertCategory(new RamUsage(null, "RAM Usage","Usage of RAM resources","%"));
         }
-    }
-
-    public static Database getDatabase() {
-        if (database == null){
-            Menu.setEnvironment();
-        }
-        return database;
-    }
-
-    public static void setDatabase(Database database) {
-        Environment.database = database;
     }
 }

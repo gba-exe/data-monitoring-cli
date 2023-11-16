@@ -9,13 +9,13 @@ import java.util.List;
 
 public class RegisterDao {
 
-    private JdbcTemplate con;
+    private static JdbcTemplate con;
 
     public RegisterDao(JdbcTemplate con) {
         this.con = con;
     }
 
-    public void insertValues(Category category) {
+    public static void insertValues(Category category) {
 
         con.update("""
         INSERT INTO tb_register(register_value, fk_category) VALUES (
@@ -25,8 +25,16 @@ public class RegisterDao {
         """, category.getValue(), category.getCategoryId());
     }
 
-    public List<Register> listRegisters(){
+    public static List<Register> listRegisters(){
 
         return con.query("SELECT * FROM tb_register;", new BeanPropertyRowMapper<>(Register.class));
+    }
+
+    public static JdbcTemplate getCon() {
+        return con;
+    }
+
+    public static void setCon(JdbcTemplate con) {
+        RegisterDao.con = con;
     }
 }

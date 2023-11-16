@@ -7,6 +7,7 @@ import exe.gba.data_managing.data_access.CategoryDao;
 import exe.gba.data_managing.factories.AvailableStorageFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
@@ -15,25 +16,19 @@ public class Test {
 
         Environment.configureEnvironment();
 
-        JdbcTemplate con = Environment.getDatabase().getConnection();
+        List<Category> categories = new ArrayList<>();
+        CpuUsage cpuUsage = new CpuUsage();
+        cpuUsage.setCategoryId(1);
 
-        CategoryDao categoryDao = new CategoryDao(con);
-        RegisterDao registerDao = new RegisterDao(con);
+        categories.add(cpuUsage);
 
+        CategoryDao.loadCategories();
 
+        System.out.println(CategoryDao.getCategories());
 
-        List<Category> categories = categoryDao.listCategories();
+        CategoryDao.getCategories().get(1).setCategoryId(1);
 
-        System.out.println(categories);
+        System.out.println(CategoryDao.getCategories());
 
-        int i = 1;
-
-        for (Category currentCategory :
-                categories) {
-            registerDao.insertValues(currentCategory);
-            i++;
-        }
-
-        System.out.println(registerDao.listRegisters());
     }
 }

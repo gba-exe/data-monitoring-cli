@@ -7,41 +7,40 @@ import exe.gba.data_managing.categories.Unknown;
 import exe.gba.data_managing.data_access.CategoryDao;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Display {
-    private static final CategoryDao categoryDao = new CategoryDao(new H2().getConnection());
-    private static List<Category> categories;
 
-    public static List<Category> displayMainMenu(){
-        categoryDao.setCon(Environment.getDatabase().getConnection());
-        categories = categoryDao.listCategories();
+    public static void mainMenu(){
+        System.out.printf("+%s+%n", "-".repeat(40));
+
+        List<Category> categories = CategoryDao.getCategories();
 
         int i = 0;
+        for (Category currentCategory : categories) {
 
-        System.out.println("+---------------------------------+");
-        for (Category currentCategory:
-             categories) {
-            if (!(currentCategory instanceof Unknown)){
-                i++;
-
-                System.out.printf("| %d) %s%n", i, currentCategory.getName());
-                currentCategory.setCategoryId(i);
-            }
+            i++;
+            System.out.printf("| %d) %s%n", i, currentCategory.getName());
+            currentCategory.setCategoryId(i);
         }
-        System.out.println("""
-                |                                 
-                | 0) Exit                         
-                +---------------------------------+
-                """);
 
-        return categories;
+        CategoryDao.loadCategories(categories);
+
+        System.out.printf("|%n| 0) Leave%n");
+        System.out.printf("+%s+%n", "-".repeat(40));
     }
 
-    public static Boolean showData(List<Category> categories, int id){
-        Category currentCategory = categories.get(id - 1);
+    public static void showData(int id){
 
-        if (currentCategory instanceof Unknown || currentCategory == null){
-            return false;
+        Category currentCategory;
+
+        try {
+
+            currentCategory = CategoryDao.getCategories().get(id - 1);
+        } catch (IndexOutOfBoundsException e){
+
+            Display.wrongOption();
+            return;
         }
 
         for (int i = 0; i < 10; i++) {
@@ -57,8 +56,6 @@ public class Display {
                 Thread.currentThread().interrupt();
             }
         }
-
-        return true;
     }
 
     public static void exit(){
@@ -69,7 +66,7 @@ public class Display {
         System.out.println("Wrong option! ");
     }
 
-    public final static void clearConsole(){
+    public static void clearConsole(){
         System.out.print("\033[H\033[2J");
     }
 }

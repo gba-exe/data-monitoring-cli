@@ -26,7 +26,7 @@ public class CategoryRowMapper implements RowMapper<Category> {
         } else if (name.equalsIgnoreCase(CategoryEnum.AVAILABLE_STORAGE.getName())){
             categoryFactory = new AvailableStorageFactory();
         } else {
-            categoryFactory = new UnknownFactory();
+            return null;
         }
 
         return categoryFactory.createCategory(
