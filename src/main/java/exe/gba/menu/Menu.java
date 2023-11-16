@@ -3,23 +3,23 @@ package exe.gba.menu;
 import exe.gba.data_base.Environment;
 import exe.gba.data_base.connection.H2;
 import exe.gba.data_base.connection.MySQL;
+import exe.gba.data_managing.categories.Category;
 import exe.gba.data_managing.factories.*;
+
+import java.util.List;
 
 public class Menu {
 
     public static void mainMenu(){
         int option;
 
-        CategoryFactory categoryFactory = null;
-
-
         while (true){
             Display.clearConsole();
 
-            Display.displayMainMenu();
+            List<Category> categories = Display.displayMainMenu();
             option = Input.readInt();
 
-            Boolean isValid = Display.showData(option);
+            Boolean isValid = Display.showData(categories, option);
 
             if (option == 0){
                 Display.exit();
@@ -27,7 +27,7 @@ public class Menu {
                 System.exit(0);
             }
 
-            if (isValid == false){
+            if (!isValid){
                 Display.wrongOption();
 
                 try {
@@ -60,10 +60,5 @@ public class Menu {
                 Display.wrongOption();
             }
         }
-    }
-
-    private static void showData(Integer id){
-        Display.clearConsole();
-        Display.showData(id);
     }
 }

@@ -12,16 +12,20 @@ public class Display {
     private static final CategoryDao categoryDao = new CategoryDao(new H2().getConnection());
     private static List<Category> categories;
 
-    public static void displayMainMenu(){
+    public static List<Category> displayMainMenu(){
         categoryDao.setCon(Environment.getDatabase().getConnection());
         categories = categoryDao.listCategories();
+
+        int i = 0;
 
         System.out.println("+---------------------------------+");
         for (Category currentCategory:
              categories) {
             if (!(currentCategory instanceof Unknown)){
+                i++;
 
-                System.out.printf("| %d) %s%n", currentCategory.getCategoryId(), currentCategory.getName());
+                System.out.printf("| %d) %s%n", i, currentCategory.getName());
+                currentCategory.setCategoryId(i);
             }
         }
         System.out.println("""
@@ -29,10 +33,12 @@ public class Display {
                 | 0) Exit                         
                 +---------------------------------+
                 """);
+
+        return categories;
     }
 
-    public static Boolean showData(Integer id){
-        Category currentCategory = categoryDao.getCategoryById(categories, id);
+    public static Boolean showData(List<Category> categories, int id){
+        Category currentCategory = categories.get(id - 1);
 
         if (currentCategory instanceof Unknown || currentCategory == null){
             return false;

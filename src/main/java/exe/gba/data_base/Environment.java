@@ -2,14 +2,11 @@ package exe.gba.data_base;
 
 import exe.gba.data_base.connection.Database;
 import exe.gba.data_base.connection.H2;
-import exe.gba.data_base.connection.MySQL;
-import exe.gba.data_base.row_mapper.CategoryRowMapper;
 import exe.gba.data_managing.categories.AvailableStorage;
 import exe.gba.data_managing.categories.CpuUsage;
 import exe.gba.data_managing.categories.RamUsage;
 import exe.gba.data_managing.categories.TotalStorage;
 import exe.gba.data_managing.data_access.CategoryDao;
-import exe.gba.menu.Display;
 import exe.gba.menu.Menu;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -30,7 +27,6 @@ public class Environment {
 
         if (database instanceof H2){
             JdbcTemplate con = database.getConnection();
-            System.out.println(database);
             CategoryDao categoryDao = new CategoryDao(con);
 
             con.execute("drop table if exists tb_register");

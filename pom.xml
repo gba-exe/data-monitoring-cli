@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>exe.gba</groupId>
-    <artifactId>Data-Monitoring-CLI</artifactId>
-    <version>1.0.0</version>
+    <artifactId>data-monitoring-cli</artifactId>
+    <version>1.1.0</version>
 
     <build>
         <plugins>

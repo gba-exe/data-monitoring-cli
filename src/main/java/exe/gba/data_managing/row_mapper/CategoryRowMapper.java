@@ -1,4 +1,4 @@
-package exe.gba.data_base.row_mapper;
+package exe.gba.data_managing.row_mapper;
 
 import exe.gba.data_managing.categories.Category;
 import exe.gba.data_managing.factories.*;
@@ -15,13 +15,13 @@ public class CategoryRowMapper implements RowMapper<Category> {
         String name = resultSet.getString("name");
         CategoryFactory categoryFactory = null;
 
-        if (name.equals("CPU Usage")){
+        if (name.equalsIgnoreCase("CPU Usage")){
             categoryFactory = new CpuUsageFactory();
-        } else if (name.equals("RAM Usage")){
+        } else if (name.equalsIgnoreCase("RAM Usage")){
             categoryFactory = new RamUsageFactory();
-        } else if (name.equals("Total Storage")){
+        } else if (name.equalsIgnoreCase("Total Storage")){
             categoryFactory = new TotalStorageFactory();
-        } else if (name.equals("Available Storage")){
+        } else if (name.equalsIgnoreCase("Available Storage")){
             categoryFactory = new AvailableStorageFactory();
         } else {
             categoryFactory = new UnknownFactory();
