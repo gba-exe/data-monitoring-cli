@@ -12,9 +12,10 @@ import java.util.Objects;
 public class Display {
 
     public static void mainMenu(){
-        System.out.printf("+%s+%n", "-".repeat(40));
 
         List<Category> categories = CategoryDao.getCategories();
+
+        System.out.printf("+%s+%n", "-".repeat(40));
 
         int i = 0;
         for (Category currentCategory : categories) {
