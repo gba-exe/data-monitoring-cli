@@ -36,3 +36,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### exe.gba ###
+
+dependency-reduced-pom.xml
+*.db
