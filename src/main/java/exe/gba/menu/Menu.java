@@ -19,13 +19,13 @@ public class Menu {
             List<Category> categories = Display.displayMainMenu();
             option = Input.readInt();
 
-            Boolean isValid = Display.showData(categories, option);
-
             if (option == 0){
                 Display.exit();
 
                 System.exit(0);
             }
+
+            Boolean isValid = Display.showData(categories, option);
 
             if (!isValid){
                 Display.wrongOption();
