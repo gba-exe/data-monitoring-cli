@@ -18,8 +18,9 @@ public class RegisterDao {
     public static void insertValues(Category category) {
 
         con.update("""
-        INSERT INTO tb_register(register_value, fk_category) VALUES (
+        INSERT INTO tb_register(register_value, date_time, fk_category) VALUES (
         ?,
+        now(),
         ?
         );
         """, category.getValue(), category.getCategoryId());
