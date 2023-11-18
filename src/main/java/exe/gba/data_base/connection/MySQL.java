@@ -9,9 +9,9 @@ public class MySQL extends Database {
 
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/teste_dinamismo");
-        dataSource.setUsername("cleiyton");
-        dataSource.setPassword("1234");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_dmcli");
+        dataSource.setUsername("dmcli");
+        dataSource.setPassword("urubu100");
 
         this.setConnection(new JdbcTemplate(dataSource));
     }
