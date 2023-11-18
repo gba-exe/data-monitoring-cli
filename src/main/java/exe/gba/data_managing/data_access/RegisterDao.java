@@ -1,7 +1,7 @@
 package exe.gba.data_managing.data_access;
 
 import exe.gba.data_managing.Register;
-import exe.gba.data_managing.categories.Category;
+import exe.gba.monitorable.categories.Category;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 

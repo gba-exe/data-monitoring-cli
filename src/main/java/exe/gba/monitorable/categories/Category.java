@@ -1,6 +1,8 @@
-package exe.gba.data_managing.categories;
+package exe.gba.monitorable.categories;
 
-public abstract class Category {
+import exe.gba.monitorable.Monitorable;
+
+public abstract class Category implements Monitorable {
 
     private Integer categoryId;
     private String name;
@@ -17,9 +19,6 @@ public abstract class Category {
         this.description = description;
         this.dataUnit = dataUnit;
     }
-
-    public abstract double getValue();
-
     public Integer getCategoryId() {
         return categoryId;
     }

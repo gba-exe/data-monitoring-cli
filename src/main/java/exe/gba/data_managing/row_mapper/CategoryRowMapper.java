@@ -1,8 +1,7 @@
 package exe.gba.data_managing.row_mapper;
 
-import exe.gba.data_managing.categories.Category;
+import exe.gba.monitorable.categories.*;
 import exe.gba.data_managing.enums.CategoryEnum;
-import exe.gba.data_managing.factories.*;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -14,26 +13,37 @@ public class CategoryRowMapper implements RowMapper<Category> {
     public Category mapRow(ResultSet resultSet, int i) throws SQLException {
 
         String name = resultSet.getString("name");
-        CategoryFactory categoryFactory = null;
+        Category category = null;
 
 
         if (name.equalsIgnoreCase(CategoryEnum.CPU_USAGE.getName())){
-            categoryFactory = new CpuUsageFactory();
+            category = new CpuUsage(
+                resultSet.getInt("category_id"),
+                resultSet.getString("name"),
+                resultSet.getString("description"),
+                resultSet.getString("data_unit"));
         } else if (name.equalsIgnoreCase(CategoryEnum.RAM_USAGE.getName())){
-            categoryFactory = new RamUsageFactory();
+            category = new RamUsage(
+                resultSet.getInt("category_id"),
+                resultSet.getString("name"),
+                resultSet.getString("description"),
+                resultSet.getString("data_unit"));
         } else if (name.equalsIgnoreCase(CategoryEnum.TOTAL_STORAGE.getName())){
-            categoryFactory = new TotalStorageFactory();
+            category = new TotalStorage(
+                resultSet.getInt("category_id"),
+                resultSet.getString("name"),
+                resultSet.getString("description"),
+                resultSet.getString("data_unit"));
         } else if (name.equalsIgnoreCase(CategoryEnum.AVAILABLE_STORAGE.getName())){
-            categoryFactory = new AvailableStorageFactory();
+            category = new AvailableStorage(
+                resultSet.getInt("category_id"),
+                resultSet.getString("name"),
+                resultSet.getString("description"),
+                resultSet.getString("data_unit"));
         } else {
             return null;
         }
 
-        return categoryFactory.createCategory(
-                resultSet.getInt("category_id"),
-                resultSet.getString("name"),
-                resultSet.getString("description"),
-                resultSet.getString("data_unit")
-        );
+        return category;
     }
 }

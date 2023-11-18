@@ -1,4 +1,4 @@
-package exe.gba.data_managing.categories;
+package exe.gba.monitorable.categories;
 
 public class Unknown extends Category{
 

@@ -3,11 +3,6 @@ package exe.gba.menu;
 import exe.gba.data_base.Environment;
 import exe.gba.data_base.connection.H2;
 import exe.gba.data_base.connection.MySQL;
-import exe.gba.data_managing.categories.Category;
-import exe.gba.data_managing.data_access.CategoryDao;
-import exe.gba.data_managing.factories.*;
-
-import java.util.List;
 
 public class Menu {
 
