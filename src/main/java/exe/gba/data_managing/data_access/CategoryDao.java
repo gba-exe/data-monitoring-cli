@@ -1,10 +1,9 @@
 package exe.gba.data_managing.data_access;
 
 import exe.gba.data_managing.row_mapper.CategoryRowMapper;
-import exe.gba.data_managing.categories.Category;
+import exe.gba.monitorable.categories.Category;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

@@ -1,11 +1,8 @@
 package exe.gba;
 
 import exe.gba.data_base.Environment;
-import exe.gba.data_managing.categories.*;
-import exe.gba.data_managing.data_access.RegisterDao;
+import exe.gba.monitorable.categories.*;
 import exe.gba.data_managing.data_access.CategoryDao;
-import exe.gba.data_managing.factories.AvailableStorageFactory;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.List;

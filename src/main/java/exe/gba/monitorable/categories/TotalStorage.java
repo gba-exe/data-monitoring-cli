@@ -1,4 +1,4 @@
-package exe.gba.data_managing.categories;
+package exe.gba.monitorable.categories;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;

@@ -1,13 +1,9 @@
 package exe.gba.menu;
 
-import exe.gba.data_base.Environment;
-import exe.gba.data_base.connection.H2;
-import exe.gba.data_managing.categories.Category;
-import exe.gba.data_managing.categories.Unknown;
+import exe.gba.monitorable.categories.Category;
 import exe.gba.data_managing.data_access.CategoryDao;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Display {
 
