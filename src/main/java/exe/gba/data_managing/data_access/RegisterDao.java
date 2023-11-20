@@ -1,5 +1,7 @@
 package exe.gba.data_managing.data_access;
 
+import exe.gba.data_base.Environment;
+import exe.gba.data_base.connection.H2;
 import exe.gba.data_managing.Register;
 import exe.gba.monitorable.categories.Category;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,13 +19,24 @@ public class RegisterDao {
 
     public static void insertValues(Category category) {
 
-        con.update("""
-        INSERT INTO tb_register(register_value, date_time, fk_category) VALUES (
-        ?,
-        now(),
-        ?
-        );
-        """, category.getValue(), category.getCategoryId());
+        if (Environment.getDatabase() instanceof H2){
+
+            con.update("""
+            INSERT INTO tb_register(register_value, date_time, fk_category) VALUES (
+            ?,
+            CURRENT_TIMESTAMP(),
+            ?
+            );
+            """, category.getValue(), category.getCategoryId());
+        } else {
+            con.update("""
+            INSERT INTO tb_register(register_value, date_time, fk_category) VALUES (
+            ?,
+            now(),
+            ?
+            );
+            """, category.getValue(), category.getCategoryId());
+        }
     }
 
     public static List<Register> listRegisters(){
