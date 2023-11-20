@@ -41,6 +41,7 @@ public class H2 extends Database {
                     CREATE TABLE tb_register (
                     register_id int primary key not null auto_increment,
                     register_value double precision,
+                    date_time datetime,
                     fk_category int not null,
                     foreign key (fk_category) references tb_category(category_id)
                     );
