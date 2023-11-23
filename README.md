@@ -102,4 +102,4 @@ Check docs on [creating pull requests](https://help.github.com/en/github/collabo
 
 ## License
 
-This project is under a license. Read [LICENSE](LICENSE.md) for more details.
+This project is under GPL-3.0 license. Read [LICENSE](LICENSE) for more details.
