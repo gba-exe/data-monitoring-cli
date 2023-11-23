@@ -48,7 +48,7 @@ git clone https://github.com/gba-exe/data-monitoring-cli
 - Download the latest release [here](https://github.com/gba-exe/data-monitoring-cli/releases)
 - Open your terminal and execute
 ```
-java -jar [DOWNLOADED_ARCHIVE]
+java -jar <DOWNLOADED_ARCHIVE>
 ```
 
 ### Windows:
