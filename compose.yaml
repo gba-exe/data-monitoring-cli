@@ -1,9 +1,9 @@
-version: '1.0'
+version: '2.0'
 
 services:
  mysql:
   container_name: dmcli-database
-  image: mysql:latest
+  image: mysql:5.7
   restart: always
   environment:
    MYSQL_ROOT_PASSWORD: 'urubu100'
@@ -11,19 +11,15 @@ services:
   volumes:
     - ./init-scripts:/docker-entrypoint-initdb.d
   ports:
-    - 3306:3306
+    - "3306:3306"
+
  app:
   container_name: dmcli-app
-  image: dmcli
+  image: openjdk:17-jdk-slim
+  working_dir: /home
   tty: true
   volumes:
-   - ./target:/home
-  links:
-   - mysql
-  ports:
-   - '8080:8080'
- 
+   - ./target:/home 
 volumes:
-  dmcli-datavolume:
-  dmcli-app:
+  dmcli-database:
 
