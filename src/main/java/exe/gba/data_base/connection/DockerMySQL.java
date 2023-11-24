@@ -10,7 +10,7 @@ public class DockerMySQL extends Database{
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://mysql:3306/db_dmcli");
-        dataSource.setUsername("dmcli");
+        dataSource.setUsername("root");
         dataSource.setPassword("urubu100");
 
         this.setConnection(new JdbcTemplate(dataSource));
