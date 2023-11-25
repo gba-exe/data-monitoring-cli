@@ -14,6 +14,7 @@
 This project is currently in development, so it may have some problems and/or possible improvements, such as:
 
 - [x] Implement more monitoring categories
+- [x] Implement containerization
 - [ ] Create online database
 - [ ] Create alert features
 
@@ -21,10 +22,12 @@ This project is currently in development, so it may have some problems and/or po
 
 Before starting, check if you meet all the requirements:
 
+- Read [this](https://github.com/gba-exe/data-monitoring-cli/blob/main/README.md) entire document.
 - `Java 17` (or above).
 - `Git` installed (and `Git Bash` if you're on Windows)
 - `Windows / Linux / Mac`.
-- Read [this](https://github.com/gba-exe/data-monitoring-cli/blob/main/README.md) entire document.
+- `Docker` and `Docker Compose` (optional).
+- `Maven` (optional).
 
 ## How to install DMCLI
 
@@ -72,6 +75,18 @@ git clone https://github.com/gba-exe/data-monitoring-cli
 java -jar <DOWNLOADED_ARCHIVE>
 ```
 
+### Docker (Advanced)
+- Clone this repo:
+```
+git clone https://github.com/gba-exe/data-monitoring-cli
+```
+- Make desired changes on source code if wanted
+- Generate .jar with maven
+  (inside project's root folder)
+```
+mvn package
+```
+
 ## Using DMCLI
 
 To use DMCLI you should follow these steps:
@@ -88,6 +103,23 @@ To use DMCLI you should follow these steps:
 - Pick what category you want to monitor
 - Insert 0 or Ctrl + C to exit
 
+#### Docker (Advanced)
+- Start network and containers
+```
+docker compose build -d
+```
+- Connect to app container
+```
+docker exec -it dmcli-app bash
+```
+- Execute the application (tip: choose docker option on menu)
+```
+java -jar data-monitoring-cli-<CURRENT_VERSION>.jar
+```
+- Stop application and containers
+```
+docker compose down -v
+```
 ## Contributing to DMCLI
 
 To contribute to DMCLI follow these instructions:
